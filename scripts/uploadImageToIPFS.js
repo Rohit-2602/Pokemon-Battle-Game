@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from "path"
 
 async function main() {
-    const directory = "D:\\Github Personal\\Pokemon Battle Game\\Pokemon Images"
+    const directory = "D:\\Github Personal\\Pokemon Battle Game\\metadata\\Pokemon Images"
     const files = fs.readdirSync(directory)
 
     const ipfs = await IPFS.create()
@@ -20,7 +20,7 @@ async function main() {
 }
 
 function updateNameToIPFSFile(pokemonName, url) {
-    const utilsDir = "D:\\Github Personal\\Pokemon Battle Game\\frontend\\src\\utils\\";
+    const utilsDir = "D:\\Github Personal\\Pokemon Battle Game\\metadata\\";
 
     if (!fs.existsSync(utilsDir)) {
         fs.mkdirSync(utilsDir);

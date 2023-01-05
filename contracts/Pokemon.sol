@@ -17,12 +17,15 @@ contract Pokemon is ERC721, PokemonStorage {
 
     constructor() ERC721("Pokemon", "PKMN") {}
 
+    event PokemonCatched(uint256 tokenId, PokemonBaseStats pokemonStats);
+    event UpdatedTokenURI(uint256 tokenId, string tokenURI);
+
     function catchPokemon(string memory pokemonName) external {
         _tokenId.increment();
         uint256 tokenId = _tokenId.current();
         // 6 for HP, ATK, DEF, SATK, SDEF, Speed
         uint256[] memory randomIVs = generateRandomNumbers(6);
-        PokemonBaseStats memory pokemonBaseStats = pokemonNameToPokemonBaseStats[pokemonName];
+        PokemonBaseStats memory pokemonStats = pokemonNameToPokemonBaseStats[pokemonName];
         uint256 hpIV = randomIVs[0] % 31;
         uint256 attackIV = randomIVs[1] % 31;
         uint256 defenceIV = randomIVs[2] % 31;
@@ -30,18 +33,24 @@ contract Pokemon is ERC721, PokemonStorage {
         uint256 specialDefenceIV = randomIVs[4] % 31;
         uint256 speedIV = randomIVs[5] % 31;
 
-        pokemonBaseStats.hp += hpIV;
-        pokemonBaseStats.attack += attackIV;
-        pokemonBaseStats.defence += defenceIV;
-        pokemonBaseStats.specialAttack += specialAttackIV;
-        pokemonBaseStats.specialDefence += specialDefenceIV;
-        pokemonBaseStats.speed += speedIV;
+        pokemonStats.hp += hpIV;
+        pokemonStats.attack += attackIV;
+        pokemonStats.defence += defenceIV;
+        pokemonStats.specialAttack += specialAttackIV;
+        pokemonStats.specialDefence += specialDefenceIV;
+        pokemonStats.speed += speedIV;
 
-        tokenIdToStats[tokenId] = pokemonBaseStats;
-        tokenIdToIvs[tokenId] = PokemonBaseStats(pokemonBaseStats.pokemonName, pokemonBaseStats.number, hpIV, attackIV, defenceIV, specialAttackIV, specialDefenceIV, speedIV, pokemonBaseStats.types);
-        tokenIdToEvs[tokenId] = PokemonBaseStats(pokemonBaseStats.pokemonName, pokemonBaseStats.number, 0, 0, 0, 0, 0, 0, pokemonBaseStats.types);
+        tokenIdToStats[tokenId] = pokemonStats;
+        tokenIdToIvs[tokenId] = PokemonBaseStats(pokemonStats.pokemonName, pokemonStats.number, hpIV, attackIV, defenceIV, specialAttackIV, specialDefenceIV, speedIV, pokemonStats.types);
+        tokenIdToEvs[tokenId] = PokemonBaseStats(pokemonStats.pokemonName, pokemonStats.number, 0, 0, 0, 0, 0, 0, pokemonStats.types);
 
         _safeMint(msg.sender, tokenId);
+        emit PokemonCatched(tokenId, pokemonStats);
+    }
+
+    function setTokenIdToTokenURI(uint256 tokenId, string memory _tokenURI) external onlyOwner {
+        tokenIdToTokenURI[tokenId] = _tokenURI;
+        emit UpdatedTokenURI(tokenId, _tokenURI);
     }
 
     function generateRandomNumbers(uint256 n) public view returns(uint256[] memory randomNumbers) {

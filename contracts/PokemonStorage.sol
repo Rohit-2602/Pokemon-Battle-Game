@@ -57,10 +57,14 @@ contract PokemonStorage is Ownable {
         string[] memory _pokemonName,
         string[] memory _pokemonImage
     ) public onlyOwner {
-        require(_pokemonName.length == _pokemonImage.length, "Lenght should be same");
+        require(_pokemonName.length == _pokemonImage.length, "Length should be same");
         for(uint256 i=0; i<_pokemonName.length; i++) {
             pokemonNameToPokemonImage[_pokemonName[i]] = _pokemonImage[i];
         }
+    }
+
+    function getListOfPokemonNames() public view returns(string[] memory) {
+        return listOfPokemonNames;
     }
 
     function lengthOfListOfPokemonNames() public view returns (uint256) {
