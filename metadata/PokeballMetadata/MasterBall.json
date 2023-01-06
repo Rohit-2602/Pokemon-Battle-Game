@@ -1,0 +1,11 @@
+{
+    "name": "Master Ball",
+    "description": "The most advanced type of Poke Ball, with a 100% success rate for catching any Pokemon. However, they are extremely rare and expensive.",
+    "image": "https://gateway.pinata.cloud/ipfs/QmbGDcsYGreQ1qTa1RFazWkriG1y8JztgAFLLUpvaE7MCW/MasterBall.png",
+    "attributes": [
+        {
+            "trait_type": "catchProbability",
+            "value": 1.0
+        }
+    ]
+}

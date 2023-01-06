@@ -1,0 +1,11 @@
+{
+    "name": "Poke Ball",
+    "description": "The most basic type of Pokeball, used for catching and storing wild Pokemon.",
+    "image": "https://gateway.pinata.cloud/ipfs/QmbGDcsYGreQ1qTa1RFazWkriG1y8JztgAFLLUpvaE7MCW/PokeBall.png",
+    "attributes": [
+        {
+            "trait_type": "catchProbability",
+            "value": 0.7
+        }
+    ]
+}

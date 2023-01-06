@@ -1,0 +1,11 @@
+{
+    "name": "Great Ball",
+    "description": "A slightly improved version of the Poke Ball, with a higher success rate for catching Pokemon.",
+    "image": "https://gateway.pinata.cloud/ipfs/QmbGDcsYGreQ1qTa1RFazWkriG1y8JztgAFLLUpvaE7MCW/GreatBall.png",
+    "attributes": [
+        {
+            "trait_type": "catchProbability",
+            "value": 0.8
+        }
+    ]
+}

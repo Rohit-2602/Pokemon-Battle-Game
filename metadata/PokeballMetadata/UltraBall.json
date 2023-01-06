@@ -1,0 +1,11 @@
+{
+    "name": "Ultra Ball",
+    "description": "An even more advanced version of the Poke Ball, with an even higher success rate for catching Pokemon.",
+    "image": "https://gateway.pinata.cloud/ipfs/QmbGDcsYGreQ1qTa1RFazWkriG1y8JztgAFLLUpvaE7MCW/UltraBall.png",
+    "attributes": [
+        {
+            "trait_type": "catchProbability",
+            "value": 0.9
+        }
+    ]
+}
