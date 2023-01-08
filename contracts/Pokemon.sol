@@ -20,9 +20,21 @@ contract Pokemon is ERC721, PokemonStorage {
     event PokemonCatched(uint256 tokenId, PokemonBaseStats pokemonStats);
     event UpdatedTokenURI(uint256 tokenId, string tokenURI);
 
-    function catchPokemon(string memory pokemonName) external {
+    address public pokeballAddress;
+
+    function setPokeballAddress(address _pokeballAddress) external onlyOwner {
+        pokeballAddress = _pokeballAddress;
+    }
+
+    modifier onlyPokeball {
+        require(msg.sender == pokeballAddress, "Function can accessable to Pokeball Contract");
+        _;
+    }
+
+    function revealPokemon(uint256 randomNumber, address _address) external onlyPokeball {
         _tokenId.increment();
         uint256 tokenId = _tokenId.current();
+        string memory pokemonName = listOfPokemonNames[randomNumber % listOfPokemonNames.length];
         // 6 for HP, ATK, DEF, SATK, SDEF, Speed
         uint256[] memory randomIVs = generateRandomNumbers(6);
         PokemonBaseStats memory pokemonStats = pokemonNameToPokemonBaseStats[pokemonName];
@@ -44,7 +56,7 @@ contract Pokemon is ERC721, PokemonStorage {
         tokenIdToIvs[tokenId] = PokemonBaseStats(pokemonStats.pokemonName, pokemonStats.number, hpIV, attackIV, defenceIV, specialAttackIV, specialDefenceIV, speedIV, pokemonStats.types);
         tokenIdToEvs[tokenId] = PokemonBaseStats(pokemonStats.pokemonName, pokemonStats.number, 0, 0, 0, 0, 0, 0, pokemonStats.types);
 
-        _safeMint(msg.sender, tokenId);
+        _safeMint(_address, tokenId);
         emit PokemonCatched(tokenId, pokemonStats);
     }
 

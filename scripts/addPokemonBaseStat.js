@@ -343,7 +343,7 @@ async function main() {
     while (i < data.length) {
         var chunkedData = data.slice(i, i + 50)
         const addBaseStatsCall = await pokemon.addPokemonBaseStats(chunkedData)
-        console.log((int(addBaseStatsCall.gasPrice)/10**18)*int(addBaseStatsCall.gasLimit))
+        console.log((Number(addBaseStatsCall.gasPrice)/10**18)*Number(addBaseStatsCall.gasLimit))
         i += 50;
     }
 }

@@ -5,6 +5,8 @@ import PokemonABI from "./contracts/PokemonABI.json";
 import PokeballABI from "./contracts/PokeballABI.json";
 import ContractAddress from "./contracts/contract-address.json";
 import { BigNumber } from "ethers";
+import PokeballItem from "./components/PokeballItem";
+import NavBar from "./components/NavBar";
 
 class App extends Component {
   state = {
@@ -38,15 +40,16 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <div>
-          <input id="pokemonNameInput" type="text" placeholder="Pokemon Name"></input>
-          <button id="catchPokemon" type="submit" onClick={this.catchPokemon}>Catch Pokemon</button>
-        </div>
-        <div>
-          <input id="buyPokeballId" type="text" placeholder="Pokeball ID"></input>
-          <input id="buyPokeballAmount" type="text" placeholder="Pokeball Amount"></input>
-          <button id="buyPokeballButton" type="submit" onClick={this.buyPokeball}>Buy Pokeball</button>
+      <div className="App" style={{
+        background: 'linear-gradient(to bottom, #0b1825, #8bbcb9',
+        height: "100vh"
+      }}>
+        <NavBar />
+        <div style={{ justifyContent: 'space-around', display: 'flex', flexWrap: 'wrap' }}>
+          <PokeballItem data={{ "image": require('./assets/PokeBall.png') }} />
+          <PokeballItem data={{ "image": require('./assets/GreatBall.png') }} />
+          <PokeballItem data={{ "image": require('./assets/UltraBall.png') }} />
+          <PokeballItem data={{ "image": require('./assets/MasterBall.png') }} />
         </div>
       </div>
     );
@@ -72,7 +75,7 @@ class App extends Component {
     const totalPrice = BigNumber.from(pokeballPrice) * BigNumber.from(pokeballAmount)
     console.log(totalPrice)
     // const value = utils.parseEther(totalPrice.toString())
-    const buyPokeballCall = await pokeballInstance.methods.buyPokeball(accounts[0], pokeballID, pokeballAmount).send({from: accounts[0], value: totalPrice})
+    const buyPokeballCall = await pokeballInstance.methods.buyPokeball(accounts[0], pokeballID, pokeballAmount).send({ from: accounts[0], value: totalPrice })
     console.log(buyPokeballCall)
   }
 

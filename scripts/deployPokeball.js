@@ -26,6 +26,16 @@ async function main() {
     console.log(ultraballPrice.hash)
     console.log(masterballPrice.hash)
 
+    const pokeballProbability = await pokeball.updateTokenProbability(1, 7)
+    const greatballProbability = await pokeball.updateTokenProbability(2, 8)
+    const ultraballProbability = await pokeball.updateTokenProbability(3, 9)
+    const masterballProbability = await pokeball.updateTokenProbability(4, 10)
+
+    console.log(pokeballProbability.hash)
+    console.log(greatballProbability.hash)
+    console.log(ultraballProbability.hash)
+    console.log(masterballProbability.hash)
+
     saveFrontendFiles(pokeball)
 }
 

@@ -370,19 +370,6 @@
     {
       "inputs": [
         {
-          "internalType": "string",
-          "name": "pokemonName",
-          "type": "string"
-        }
-      ],
-      "name": "catchPokemon",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
           "internalType": "uint256",
           "name": "n",
           "type": "uint256"
@@ -533,6 +520,19 @@
       "type": "function"
     },
     {
+      "inputs": [],
+      "name": "pokeballAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "string",
@@ -669,6 +669,24 @@
     {
       "inputs": [
         {
+          "internalType": "uint256",
+          "name": "randomNumber",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "revealPokemon",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "address",
           "name": "from",
           "type": "address"
@@ -731,6 +749,19 @@
         }
       ],
       "name": "setApprovalForAll",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_pokeballAddress",
+          "type": "address"
+        }
+      ],
+      "name": "setPokeballAddress",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
